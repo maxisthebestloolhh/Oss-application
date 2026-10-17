@@ -1,11 +1,9 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="theme-color" content="#080808">
-<meta name="color-scheme" content="dark">
 <title>OSS | Recruitment Division</title>
 
 <style>
@@ -13,332 +11,185 @@
   --bg: #080808;
   --panel: #111;
   --gold: #c9a45c;
-  --gold-bright: #e1bd75;
   --text: #eee;
   --muted: #aaa;
   --border: #303030;
 }
 
-* {
-  box-sizing: border-box;
-}
-
-html {
-  min-width: 0;
-  scroll-behavior: smooth;
-  -webkit-text-size-adjust: 100%;
-  text-size-adjust: 100%;
-}
+* { box-sizing: border-box; }
 
 body {
   margin: 0;
-  min-width: 0;
   background: var(--bg);
   color: var(--text);
   font-family: Arial, Helvetica, sans-serif;
   line-height: 1.6;
-  overflow-wrap: anywhere;
 }
 
 header {
-  padding: clamp(26px, 5vw, 42px) 16px;
+  padding: 34px 18px;
   text-align: center;
   border-bottom: 1px solid #49391c;
-  background:
-    radial-gradient(ellipse at top, rgba(201,164,92,.09), transparent 65%),
-    linear-gradient(180deg, #17130b, #080808);
+  background: linear-gradient(180deg, #17130b, #080808);
 }
 
 .logo {
   color: var(--gold);
   font-weight: 900;
-  font-size: clamp(2.6rem, 11vw, 4rem);
-  letter-spacing: clamp(4px, 1.5vw, 9px);
-  line-height: 1.15;
-  margin: 8px 0;
+  font-size: clamp(2.5rem, 8vw, 4rem);
+  letter-spacing: 9px;
+  margin: 0;
 }
 
 .subtitle {
   color: #c5c5c5;
-  letter-spacing: clamp(1px, .6vw, 3px);
-  font-size: clamp(.68rem, 2.5vw, .8rem);
+  letter-spacing: 3px;
+  font-size: .8rem;
   text-transform: uppercase;
-  margin: 6px 0;
 }
 
 main {
-  width: min(900px, calc(100% - 32px));
-  margin: clamp(18px, 4vw, 32px) auto 48px;
+  width: min(900px, 94%);
+  margin: 30px auto 60px;
 }
 
 .notice, .section, .intro {
-  min-width: 0;
   background: var(--panel);
   border: 1px solid var(--border);
-  border-radius: 12px;
-  padding: clamp(16px, 3vw, 24px);
-  margin-bottom: 18px;
-  box-shadow: 0 8px 24px rgba(0,0,0,.12);
+  border-radius: 9px;
+  padding: 22px;
+  margin-bottom: 20px;
 }
 
-.notice {
-  border-left: 4px solid var(--gold);
-}
+.notice { border-left: 4px solid var(--gold); }
 
-h2, h3 {
-  color: var(--gold);
-}
+h2, h3 { color: var(--gold); }
 
 h2 {
-  font-size: clamp(1.08rem, 3.8vw, 1.35rem);
-  line-height: 1.35;
   border-bottom: 1px solid var(--border);
-  padding-bottom: 12px;
-  margin: 0 0 18px;
-  overflow-wrap: anywhere;
-}
-
-p {
+  padding-bottom: 10px;
   margin-top: 0;
-}
-
-p:last-child {
-  margin-bottom: 0;
 }
 
 label {
   display: block;
   font-weight: 700;
-  line-height: 1.45;
-  margin: 22px 0 8px;
-  overflow-wrap: anywhere;
+  margin: 18px 0 7px;
 }
 
 input, select, textarea {
-  display: block;
   width: 100%;
-  min-width: 0;
-  min-height: 48px;
-  padding: 12px 13px;
+  padding: 12px;
   background: #090909;
   color: var(--text);
   border: 1px solid #424242;
-  border-radius: 7px;
+  border-radius: 5px;
   font: inherit;
-  font-size: 16px;
-  line-height: 1.5;
-}
-
-input::placeholder, textarea::placeholder {
-  color: #888;
-  opacity: 1;
 }
 
 input:focus, select:focus, textarea:focus {
   outline: 2px solid var(--gold);
-  outline-offset: 1px;
   border-color: var(--gold);
-  box-shadow: 0 0 0 4px rgba(201,164,92,.2);
 }
 
 textarea {
-  min-height: 132px;
+  min-height: 115px;
   resize: vertical;
 }
 
-small, .muted {
-  color: var(--muted);
-}
+small, .muted { color: var(--muted); }
 
 button {
-  display: block;
   width: 100%;
-  min-height: 52px;
   border: 0;
-  border-radius: 8px;
-  padding: 15px 18px;
+  border-radius: 5px;
+  padding: 15px;
   background: var(--gold);
   color: #090909;
   font-size: 1rem;
   font-weight: 800;
-  letter-spacing: .4px;
   cursor: pointer;
-  margin-top: 24px;
-  touch-action: manipulation;
-  transition: background .15s ease, transform .15s ease;
+  margin-top: 22px;
 }
 
-button:hover {
-  background: var(--gold-bright);
-}
-
-button:active {
-  transform: translateY(1px);
-}
-
-button:focus-visible {
-  outline: 3px solid var(--text);
-  outline-offset: 3px;
-}
+button:hover { background: #e1bd75; }
 
 button:disabled {
   opacity: .6;
   cursor: wait;
-  transform: none;
 }
 
 .check {
-  display: grid;
-  grid-template-columns: 24px minmax(0, 1fr);
-  align-items: start;
-  gap: 11px;
-  margin-top: 20px;
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  margin-top: 17px;
 }
 
 .check input {
-  width: 22px;
-  height: 22px;
-  min-height: 22px;
-  margin: 2px 0 0;
-  padding: 0;
-  accent-color: var(--gold);
-  cursor: pointer;
+  width: auto;
+  margin-top: 6px;
+  flex-shrink: 0;
 }
 
 .check label {
   margin: 0;
   font-weight: 400;
-  cursor: pointer;
 }
 
 .progress-wrap {
   background: #292929;
-  height: 8px;
-  border-radius: 999px;
+  height: 7px;
+  border-radius: 8px;
   overflow: hidden;
-  margin: 14px 0;
+  margin: 15px 0;
 }
 
 #progress {
   height: 100%;
   width: 0;
   background: var(--gold);
-  border-radius: inherit;
-  transition: width .2s ease;
-}
-
-#progressText {
-  margin-bottom: 0;
+  transition: width .2s;
 }
 
 #status {
   margin-top: 18px;
   white-space: pre-wrap;
   overflow-wrap: anywhere;
-  scroll-margin-top: 16px;
 }
 
-.success {
-  color: #7ee0a0;
-}
-
-.error {
-  color: #ff8585;
-}
+.success { color: #7ee0a0; }
+.error { color: #ff8585; }
 
 #draftStatus {
   color: var(--muted);
-  font-size: .875rem;
-  margin-top: 10px;
+  font-size: .85rem;
+  margin-top: 8px;
 }
 
 footer {
   text-align: center;
   border-top: 1px solid var(--border);
-  padding: 22px 16px;
+  padding: 24px;
   color: var(--muted);
   font-size: .85rem;
-  overflow-wrap: anywhere;
 }
 
-/* Keep the spam-protection field hidden from normal users. */
 .hidden {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0,0,0,0) !important;
-  white-space: nowrap !important;
-  border: 0 !important;
+  position: absolute;
+  left: -9999px;
 }
 
-@media (max-width: 600px) {
-  header {
-    padding: 24px 14px 26px;
-  }
-
-  main {
-    width: calc(100% - 24px);
-    margin: 16px auto 32px;
-  }
-
-  .notice, .section, .intro {
-    padding: 16px;
-    margin-bottom: 14px;
-    border-radius: 10px;
-  }
-
-  h2 {
-    padding-bottom: 10px;
-    margin-bottom: 15px;
-  }
-
-  label {
-    margin-top: 20px;
-  }
-
-  textarea {
-    min-height: 125px;
-  }
-
-  button {
-    margin-top: 22px;
-  }
-
-  footer {
-    padding: 20px 14px;
-  }
-}
-
-@media (max-width: 360px) {
-  main {
-    width: calc(100% - 18px);
-  }
-
-  .notice, .section, .intro {
-    padding: 13px;
-  }
-
-  .logo {
-    letter-spacing: 3px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  *, *::before, *::after {
-    transition-duration: .01ms !important;
-  }
+@media(max-width:600px) {
+  header { padding: 25px 12px; }
+  .logo { letter-spacing: 5px; }
+  .section, .notice, .intro { padding: 16px; }
 }
 </style>
 </head>
 
 <body>
+
 <header>
   <p class="subtitle">Historical Intelligence Recruitment Project</p>
   <h1 class="logo">OSS</h1>
@@ -367,12 +218,10 @@ footer {
       Detailed, reasoned answers are preferred over unnecessarily long
       responses. Submitting an application does not guarantee acceptance.
     </p>
-    <p id="progressText" class="muted" aria-live="polite">
+    <p id="progressText" class="muted">
       Required fields completed: 0%
     </p>
-    <div class="progress-wrap" id="progressBar"
-      role="progressbar" aria-label="Required fields completed"
-      aria-valuemin="0" aria-valuemax="100" aria-valuenow="0">
+    <div class="progress-wrap">
       <div id="progress"></div>
     </div>
     <p id="draftStatus" aria-live="polite">
@@ -381,17 +230,17 @@ footer {
   </section>
 
   <form id="applicationForm">
+
     <section class="section">
       <h2>Section I — Applicant Information</h2>
 
       <label for="roblox">1. Roblox Username *</label>
       <input id="roblox" name="roblox" required maxlength="100"
-        autocomplete="username" autocapitalize="none"
         placeholder="Enter your Roblox username">
 
       <label for="discord">2. Discord Username *</label>
       <input id="discord" name="discord" required maxlength="100"
-        autocapitalize="none" placeholder="Enter your Discord username">
+        placeholder="Enter your Discord username">
 
       <label for="timezone">3. Timezone *</label>
       <input id="timezone" name="timezone" required maxlength="100"
@@ -438,6 +287,279 @@ footer {
         placeholder="Consider evidence, context, corroboration, and possible limitations."></textarea>
 
       <label for="bias">12. How can personal bias affect an investigation? *</label>
+      <textarea id="bias" name="bias" required maxlength="1500"
+        placeholder="Explain how bias can influence conclusions and how to reduce it."></textarea>
+
+      <label for="confidence">13. What would you do if you were uncertain about a conclusion? *</label>
+      <textarea id="confidence" name="confidence" required maxlength="1500"
+        placeholder="Explain how you would communicate uncertainty responsibly."></textarea>
+    </section>
+
+    <section class="section">
+      <h2>Section IV — Situational Judgement</h2>
+
+      <label for="scenario">14. You receive a report containing several claims, but only one is supported by evidence. How would you proceed? *</label>
+      <textarea id="scenario" name="scenario" required maxlength="2000"
+        placeholder="Explain how you would separate verified facts from unverified claims."></textarea>
+
+      <label for="urgent">15. You receive two important tasks with similar deadlines. How do you prioritise them? *</label>
+      <textarea id="urgent" name="urgent" required maxlength="1500"
+        placeholder="Explain how you would assess urgency, importance, and available support."></textarea>
+
+      <label for="restricted">16. Someone asks you to share information they are not authorised to access. What do you do? *</label>
+      <textarea id="restricted" name="restricted" required maxlength="1500"
+        placeholder="Explain how you would respond and protect confidential information."></textarea>
+
+      <label for="misconduct">17. What would you do if a fellow member violated team rules? *</label>
+      <textarea id="misconduct" name="misconduct" required maxlength="1500"
+        placeholder="Explain how you would handle the situation fairly and responsibly."></textarea>
+
+      <label for="pressure">18. How would you respond to pressure to change a report's findings? *</label>
+      <textarea id="pressure" name="pressure" required maxlength="1500"
+        placeholder="Explain why accuracy and integrity matter."></textarea>
+    </section>
+
+    <section class="section">
+      <h2>Section V — Written Reporting</h2>
+
+      <label for="report">19. Write a short factual report about a fictional event. Separate confirmed facts from assumptions. *</label>
+      <textarea id="report" name="report" required maxlength="2500"
+        placeholder="Use a clear title, summary, known facts, unknowns, and conclusion."></textarea>
+
+      <label for="summary">20. Summarise a complicated situation clearly and objectively. *</label>
+      <textarea id="summary" name="summary" required maxlength="2000"
+        placeholder="Write a concise summary without adding unsupported details."></textarea>
+    </section>
+
+    <section class="section">
+      <h2>Section VI — Professional Conduct</h2>
+
+      <label for="privacy">21. Why is confidentiality important in a team? *</label>
+      <textarea id="privacy" name="privacy" required maxlength="1500"
+        placeholder="Explain responsible handling of private team information."></textarea>
+
+      <label for="orders">22. What would you do if you received an instruction you did not understand? *</label>
+      <textarea id="orders" name="orders" required maxlength="1500"
+        placeholder="Explain how you would clarify the instruction before acting."></textarea>
+
+      <label for="disagreement">23. How would you handle a professional disagreement with a superior? *</label>
+      <textarea id="disagreement" name="disagreement" required maxlength="1500"
+        placeholder="Explain how you would communicate respectfully and follow appropriate procedures."></textarea>
+
+      <label for="confidentiality">24. What would you do if you accidentally shared information with the wrong person? *</label>
+      <textarea id="confidentiality" name="confidentiality" required maxlength="1500"
+        placeholder="Explain how you would report and address the mistake."></textarea>
+
+      <label for="priorities">25. What should matter more: speed or accuracy? Explain your answer. *</label>
+      <textarea id="priorities" name="priorities" required maxlength="1500"
+        placeholder="Explain how you would balance deadlines with reliable work."></textarea>
+
+      <label for="finalnotes">26. Additional Information (Optional)</label>
+      <textarea id="finalnotes" name="finalnotes" maxlength="1500"
+        placeholder="Anything else you would like the recruitment team to know."></textarea>
+
+      <div class="check">
+        <input type="checkbox" id="confirm" name="confirm" required>
+        <label for="confirm">
+          I confirm that my answers are honest and written by me. *
+        </label>
+      </div>
+
+      <div class="check">
+        <input type="checkbox" id="privacy_ack" name="privacy_ack" required>
+        <label for="privacy_ack">
+          I understand that my application will be sent to the recruitment
+          team for review. *
+        </label>
+      </div>
+
+      <div class="hidden" aria-hidden="true">
+        <label for="website">Leave this field empty</label>
+        <input id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <button id="submitButton" type="submit">
+        SUBMIT APPLICATION
+      </button>
+
+      <div id="status" role="status" aria-live="polite"></div>
+    </section>
+  </form>
+</main>
+
+<footer>
+  OSS Recruitment Division • Community Recruitment Project
+</footer>
+
+<script>
+const form = document.getElementById("applicationForm");
+const progress = document.getElementById("progress");
+const progressText = document.getElementById("progressText");[span_1](start_span)[span_1](end_span) const statusBox = document.getElementById("status");
+const submitButton = document.getElementById("submitButton");
+const draftStatus = document.getElementById("draftStatus");
+
+const DRAFT_KEY = "ossApplicationDraft";
+
+function updateProgress() {
+  const required = [...form.querySelectorAll("[required]")];
+
+  const completed = required.filter(field => {
+    if (field.type === "checkbox") return field.checked;
+    return field.value.trim() !== "";
+  }).length;
+
+  const percent = required.length
+    ? Math.round((completed / required.length) * 100)
+    : 0;
+
+  progress.style.width = percent + "%";
+  progressText.textContent =
+    "Required fields completed: " + percent + "%";
+}
+
+function saveDraft() {
+  try {
+    const answers = {};
+
+    for (const field of form.elements) {
+      if (!field.name) continue;
+
+      // Never save the honeypot field.
+      if (field.name === "website") continue;
+
+      if (field.type === "submit" || field.type === "button") {
+        continue;
+      }
+
+      answers[field.name] = field.type === "checkbox"
+        ? field.checked
+        : field.value;
+    }
+
+    localStorage.setItem(DRAFT_KEY, JSON.stringify(answers));
+    draftStatus.textContent = "Draft saved on this device.";
+  } catch (error) {
+    draftStatus.textContent =
+      "Automatic saving is unavailable in this browser.";
+  }
+}
+
+function restoreDraft() {
+  try {
+    const saved = localStorage.getItem(DRAFT_KEY);
+
+    if (!saved) {
+      updateProgress();
+      return;
+    }
+
+    const answers = JSON.parse(saved);
+
+    for (const field of form.elements) {
+      if (!field.name || field.name === "website") continue;
+      if (!(field.name in answers)) continue;
+
+      if (field.type === "checkbox") {
+        field.checked = answers[field.name] === true;
+      } else if (
+        field.type !== "submit" &&
+        field.type !== "button"
+      ) {
+        field.value = answers[field.name];
+      }
+    }
+
+    draftStatus.textContent =
+      "Your previous draft has been restored.";
+
+    updateProgress();
+  } catch (error) {
+    draftStatus.textContent =
+      "Could not restore your saved draft.";
+    updateProgress();
+  }
+}
+
+form.addEventListener("input", () => {
+  saveDraft();
+  updateProgress();
+});
+
+form.addEventListener("change", () => {
+  saveDraft();
+  updateProgress();
+});
+
+form.addEventListener("submit", async event => {
+  event.preventDefault();
+
+  if (!form.reportValidity()) return;
+
+  submitButton.disabled = true;
+  submitButton.textContent = "SUBMITTING...";
+  statusBox.className = "";
+  statusBox.textContent =
+    "Submitting your application. Please wait.";
+
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
+
+  data.confirm = document.getElementById("confirm").checked;
+  data.privacy_ack =
+    document.getElementById("privacy_ack").checked;
+
+  try {
+    const response = await fetch("/api/apply", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+
+    const result = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      throw new Error(
+        result.error || "Application submission failed."
+      );
+    }
+
+    // Clear the draft ONLY after the server confirms success.
+    localStorage.removeItem(DRAFT_KEY);
+
+    statusBox.className = "success";
+    statusBox.textContent =
+      "Application submitted successfully!\nReference: " +
+      (result.applicationId || "Submitted");
+
+    form.reset();
+    updateProgress();
+
+    draftStatus.textContent =
+      "Application submitted. Your saved draft was cleared.";
+
+  } catch (error) {
+    statusBox.className = "error";
+    statusBox.textContent =
+      error.message ||
+      "Something went wrong. Your draft is still saved.";
+
+    draftStatus.textContent =
+      "Your draft remains saved on this device. You can retry.";
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = "SUBMIT APPLICATION";
+  }
+});
+
+// Restore answers when the page opens.
+restoreDraft();
+</script>
+
+</body>
+</html>
+el>
       <textarea id="bias" name="bias" required maxlength="1500"
         placeholder="Explain how bias can influence conclusions and how to reduce it."></textarea>
 
