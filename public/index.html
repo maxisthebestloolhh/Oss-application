@@ -620,6 +620,232 @@ label for="privacy">21. Why is confidentiality important in a team? *</label>
 <script>
 const form = document.getElementById("applicationForm");
 const progress = document.getElementById("progress");
+const progressText = document.getElementById("progressText");
+const statusBox = document.getElementById("status");
+const submitButton = document.getElementById("submitButton");
+const draftStatus = document.getElementById("draftStatus");
+
+const DRAFT_KEY = "ossApplicationDraft";
+
+function updateProgress() {
+  const required = [...form.querySelectorAll("[required]")];
+
+  const completed = required.filter(field => {
+    if (field.type === "checkbox") return field.checked;
+    return field.value.trim() !== "";
+  }).length;
+
+  const percent = required.length
+    ? Math.round((completed / required.length) * 100)
+    : 0;
+
+  progress.style.width = percent + "%";
+  progressText.textContent =
+    "Required fields completed: " + percent + "%";
+}
+
+function saveDraft() {
+  try {
+    const answers = {};
+
+    for (const field of form.elements) {
+      if (!field.name) continue;
+
+      // Never save the honeypot field.
+      if (field.name === "website") continue;
+
+      if (field.type === "submit" || field.type === "button") {
+        continue;
+      }
+
+      answers[field.name] = field.type === "checkbox"
+        ? field.checked
+        : field.value;
+    }
+
+    localStorage.setItem(DRAFT_KEY, JSON.stringify(answers));
+    draftStatus.textContent = "Draft saved on this device.";
+  } catch (error) {
+    draftStatus.textContent =
+      "Automatic saving is unavailable in this browser.";
+  }
+}
+
+function restoreDraft() {
+  try {
+    const saved = localStorage.getItem(DRAFT_KEY);
+
+    if (!saved) {
+      updateProgress();
+      return;
+    }
+
+    const answers = JSON.parse(saved);
+
+    for (const field of form.elements) {
+      if (!field.name || field.name === "website") continue;
+      if (!(field.name in answers)) continue;
+
+      if (field.type === "checkbox") {
+        field.checked = answers[field.name] === true;
+      } else if (
+        field.type !== "submit" &&
+        field.type !== "button"
+      ) {
+        field.value = answers[field.name];
+      }
+    }
+
+    draftStatus.textContent =
+      "Your previous draft has been restored.";
+
+    updateProgress();
+  } catch (error) {
+    draftStatus.textContent =
+      "Could not restore your saved draft.";
+    updateProgress();
+  }
+}
+
+form.addEventListener("input", () => {
+  saveDraft();
+  updateProgress();
+});
+
+form.addEventListener("change", () => {
+  saveDraft();
+  updateProgress();
+});
+
+form.addEventListener("submit", async event => {
+  event.preventDefault();
+
+  if (!form.reportValidity()) return;
+
+  submitButton.disabled = true;
+  submitButton.textContent = "SUBMITTING...";
+  statusBox.className = "";
+  statusBox.textContent =
+    "Submitting your application. Please wait.";
+
+  const formData = new FormData(form);
+  const data = Object.fromEntries(formData.entries());
+
+  data.confirm = document.getElementById("confirm").checked;
+  data.privacy_ack =
+    document.getElementById("privacy_ack").checked;
+
+  try {
+    const response = await fetch("/api/apply", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify(data)
+    });
+
+    const result = await response.json().catch(() => ({}));
+
+    if (!response.ok) {
+      throw new Error(
+        result.error || "Application submission failed."
+      );
+    }
+
+    // Clear the draft ONLY after the server confirms success.
+    localStorage.removeItem(DRAFT_KEY);
+
+    statusBox.className = "success";
+    statusBox.textContent =
+      "Application submitted successfully!\nReference: " +
+      (result.applicationId || "Submitted");
+
+    form.reset();
+    updateProgress();
+
+    draftStatus.textContent =
+      "Application submitted. Your saved draft was cleared.";
+
+  } catch (error) {
+    statusBox.className = "error";
+    statusBox.textContent =
+      error.message ||
+      "Something went wrong. Your draft is still saved.";
+
+    draftStatus.textContent =
+      "Your draft remains saved on this device. You can retry.";
+  } finally {
+    submitButton.disabled = false;
+    submitButton.textContent = "SUBMIT APPLICATION";
+  }
+});
+
+// Restore answers when the page opens.
+restoreDraft();
+</script>
+
+</body>
+</html>
+label for="privacy">21. Why is confidentiality important in a team? *</label>
+      <textarea id="privacy" name="privacy" required maxlength="1500"
+        placeholder="Explain responsible handling of private team information."></textarea>
+
+      <label for="orders">22. What would you do if you received an instruction you did not understand? *</label>
+      <textarea id="orders" name="orders" required maxlength="1500"
+        placeholder="Explain how you would clarify the instruction before acting."></textarea>
+
+      <label for="disagreement">23. How would you handle a professional disagreement with a superior? *</label>
+      <textarea id="disagreement" name="disagreement" required maxlength="1500"
+        placeholder="Explain how you would communicate respectfully and follow appropriate procedures."></textarea>
+
+      <label for="confidentiality">24. What would you do if you accidentally shared information with the wrong person? *</label>
+      <textarea id="confidentiality" name="confidentiality" required maxlength="1500"
+        placeholder="Explain how you would report and address the mistake."></textarea>
+
+      <label for="priorities">25. What should matter more: speed or accuracy? Explain your answer. *</label>
+      <textarea id="priorities" name="priorities" required maxlength="1500"
+        placeholder="Explain how you would balance deadlines with reliable work."></textarea>
+
+      <label for="finalnotes">26. Additional Information (Optional)</label>
+      <textarea id="finalnotes" name="finalnotes" maxlength="1500"
+        placeholder="Anything else you would like the recruitment team to know."></textarea>
+
+      <div class="check">
+        <input type="checkbox" id="confirm" name="confirm" required>
+        <label for="confirm">
+          I confirm that my answers are honest and written by me. *
+        </label>
+      </div>
+
+      <div class="check">
+        <input type="checkbox" id="privacy_ack" name="privacy_ack" required>
+        <label for="privacy_ack">
+          I understand that my application will be sent to the recruitment
+          team for review. *
+        </label>
+      </div>
+
+      <div class="hidden" aria-hidden="true">
+        <label for="website">Leave this field empty</label>
+        <input id="website" name="website" tabindex="-1" autocomplete="off">
+      </div>
+
+      <button id="submitButton" type="submit">
+        SUBMIT APPLICATION
+      </button>
+
+      <div id="status" role="status" aria-live="polite"></div>
+    </section>
+  </form>
+</main>
+
+<footer>
+  OSS Recruitment Division • Community Recruitment Project
+</footer>
+
+<script>
+const form = document.getElementById("applicationForm");
+const progress = document.getElementById("progress");
 const progressText = document.getElementById("progressText");[span_1](start_span)[span_1](end_span) const statusBox = document.getElementById("status");
 const submitButton = document.getElementById("submitButton");
 const draftStatus = document.getElementById("draftStatus");
