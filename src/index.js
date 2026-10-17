@@ -80,11 +80,6 @@ async function handleApplication(request, env) {
       required: true,
     },
     {
-      name: "5. Do you have any previous experience?",
-      key: "experience",
-      required: false,
-    },
-    {
       name: "6. Why do you want to join the OSS?",
       key: "motivation",
       required: true,
